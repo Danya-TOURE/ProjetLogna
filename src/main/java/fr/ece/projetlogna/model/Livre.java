@@ -1,6 +1,6 @@
 package fr.ece.projetlogna.model;
 
-public class livre {
+public class Livre {
     public class Livre {
 
         private int id;
