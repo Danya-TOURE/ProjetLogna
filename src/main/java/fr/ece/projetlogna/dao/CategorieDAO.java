@@ -1,24 +1,23 @@
 package fr.ece.projetlogna.dao;
 
-import fr.ece.correction.config.DatabaseConfig;
-import fr.ece.correction.model.Categorie;
+import fr.ece.projetlogna.database.Database;
+import fr.ece.projetlogna.model.categorie;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategorieDAO {
 
-    public boolean create(Categorie categorie) {
-        String sql = "INSERT INTO categorie (nom) VALUES (?)";
+    // 👍 CREATE
+    public boolean create(categorie categorie) {
+        String sql = "INSERT INTO categories (name) VALUES (?)";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, categorie.getNom());
+
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -27,19 +26,22 @@ public class CategorieDAO {
         }
     }
 
-    public List<Categorie> findAll() {
-        List<Categorie> list = new ArrayList<>();
-        String sql = "SELECT * FROM categorie";
+    // 👍 READ (all)
+    public List<categorie> findAll() {
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        List<categorie> list = new ArrayList<>();
+        String sql = "SELECT id, name FROM categories";
+
+        try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                list.add(new Categorie(
+                categorie c = new categorie(
                         rs.getInt("id"),
-                        rs.getString("nom")
-                ));
+                        rs.getString("name")
+                );
+                list.add(c);
             }
 
         } catch (SQLException e) {
@@ -49,13 +51,16 @@ public class CategorieDAO {
         return list;
     }
 
+    // 👍 DELETE
     public boolean delete(int id) {
-        String sql = "DELETE FROM categorie WHERE id = ?";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        String sql = "DELETE FROM categories WHERE id = ?";
+
+        try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
+
             return stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {

@@ -1,6 +1,7 @@
-package test;
+package fr.ece.projetlogna;
 
-import database.Database;
+import fr.ece.projetlogna.database.Database;
+
 import java.sql.Connection;
 
 public class TestDB {
@@ -16,3 +17,4 @@ public class TestDB {
         }
     }
 }
+

@@ -10,7 +10,10 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/login.fxml"));
+        Parent root = FXMLLoader.load(
+                getClass().getResource("/Views/login.fxml")  // chemin correct
+        );
+
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Connexion - Lôgna");
@@ -21,3 +24,4 @@ public class MainApp extends Application {
         launch(args);
     }
 }
+

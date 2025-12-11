@@ -73,7 +73,8 @@ public class CategorieController {
 
             // Passer la catégorie au contrôleur de la page livre
             LivreController controller = loader.getController();
-            controller.setcategorieController(categorie);
+            controller.setCategorie(categorie);
+
 
             Stage stage = (Stage) litteratureAfricaineBtn.getScene().getWindow();
             Scene scene = new Scene(root);
