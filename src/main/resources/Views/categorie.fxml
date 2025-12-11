@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.ece.projetlogna.controller.CategorieController"
+            prefHeight="700.0" prefWidth="1200.0">
+
+    <!-- En-tête -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #8B2929; -fx-padding: 15;">
+            <Label text="Lôgna" textFill="white"
+                   style="-fx-font-size: 36; -fx-font-weight: bold; -fx-font-family: 'Serif';">
+                <HBox.margin>
+                    <Insets left="30"/>
+                </HBox.margin>
+            </Label>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="searchField" promptText="Rechercher un livre..."
+                       prefWidth="400" prefHeight="40"
+                       style="-fx-background-color: #FAF0E6; -fx-background-radius: 20; -fx-padding: 10;">
+            </TextField>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="accountButton" text="Mon compte" onAction="#goToCompte"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16; -fx-cursor: hand;">
+                <graphic>
+                    <Label text="👤" style="-fx-font-size: 20;"/>
+                </graphic>
+                <HBox.margin>
+                    <Insets right="30"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </top>
+
+    <!-- Menu latéral gauche -->
+    <left>
+        <VBox spacing="0" style="-fx-background-color: #8B2929;" prefWidth="200">
+            <padding>
+                <Insets top="30" bottom="30"/>
+            </padding>
+
+            <Button text="Catalogue" onAction="#goToCatalogue"
+                    prefWidth="200" prefHeight="50"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;">
+            </Button>
+
+            <Button text="Catégories"
+                    prefWidth="200" prefHeight="50"
+                    style="-fx-background-color: #A03838; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-font-weight: bold;">
+            </Button>
+
+            <Button text="Forum" onAction="#goToForum"
+                    prefWidth="200" prefHeight="50"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;">
+            </Button>
+
+            <Button text="Avis" onAction="#goToAvis"
+                    prefWidth="200" prefHeight="50"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;">
+            </Button>
+
+            <Button text="Utilisateurs" onAction="#goToUtilisateurs"
+                    prefWidth="200" prefHeight="50"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;">
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Contenu central -->
+    <center>
+        <VBox spacing="40" style="-fx-background-color: #FAF0E6;">
+            <padding>
+                <Insets top="50" bottom="50" left="80" right="80"/>
+            </padding>
+
+            <Label text="Catégories" textFill="#3B1414"
+                   style="-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: 'Serif';">
+            </Label>
+
+            <VBox spacing="25">
+                <Button fx:id="litteratureAfricaineBtn" text="Littérature africaine" onAction="#showLitteratureAfricaine"
+                        prefWidth="500" prefHeight="70"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;">
+                </Button>
+
+                <Button fx:id="romanBtn" text="Roman" onAction="#showRoman"
+                        prefWidth="500" prefHeight="70"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;">
+                </Button>
+
+                <Button fx:id="developpementBtn" text="Développement personnel" onAction="#showDeveloppement"
+                        prefWidth="500" prefHeight="70"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;">
+                </Button>
+
+                <Button fx:id="fantastiqueBtn" text="Fantastique et science fiction" onAction="#showFantastique"
+                        prefWidth="500" prefHeight="70"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;">
+                </Button>
+
+                <Button fx:id="philosophieBtn" text="Philosophie" onAction="#showPhilosophie"
+                        prefWidth="500" prefHeight="70"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;">
+                </Button>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
