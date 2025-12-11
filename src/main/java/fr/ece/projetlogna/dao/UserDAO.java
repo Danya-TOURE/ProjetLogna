@@ -9,23 +9,21 @@ import java.util.List;
 
 public class UserDAO {
 
-    // ---------------------------
+    // --------------------------- //
     // CREATE (Register)
-    // ---------------------------
+    // --------------------------- //
     public boolean register(User user) {
 
-        String sql = "INSERT INTO users (username, email, password_hash, role, niveau, livres_lus) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        // ⚠️ IMPORTANT : niveau et livres_lus ont des valeurs par défaut dans MySQL !
+        String sql = "INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPasswordHash()); // hashé côté Java
-            stmt.setString(4, user.getRole());
-            stmt.setString(5, user.getNiveau());
-            stmt.setInt(6, user.getLivresLus());
+            stmt.setString(3, user.getPasswordHash());
+            stmt.setString(4, user.getRole()); // ex: "user"
 
             return stmt.executeUpdate() > 0;
 
@@ -35,11 +33,11 @@ public class UserDAO {
         }
     }
 
-    // ---------------------------
-    // LOGIN
-    // ---------------------------
-    public User login(String email, String passwordHash) {
 
+    // --------------------------- //
+    // LOGIN
+    // --------------------------- //
+    public User login(String email, String passwordHash) {
         String sql = "SELECT * FROM users WHERE email = ? AND password_hash = ?";
 
         try (Connection conn = Database.getConnection();
@@ -61,11 +59,11 @@ public class UserDAO {
         return null;
     }
 
-    // ---------------------------
-    // FIND ALL
-    // ---------------------------
-    public List<User> findAll() {
 
+    // --------------------------- //
+    // FIND ALL
+    // --------------------------- //
+    public List<User> findAll() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users";
 
@@ -84,18 +82,17 @@ public class UserDAO {
         return users;
     }
 
-    // ---------------------------
-    // FIND BY ID
-    // ---------------------------
-    public User findById(int id) {
 
-        String sql = "SELECT * FROM users WHERE id = ?";
+    // --------------------------- //
+    // FIND BY username
+    // --------------------------- //
+    public User findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
-
+            stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -103,19 +100,20 @@ public class UserDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur findById : " + e.getMessage());
+            System.out.println("❌ Erreur findByUsername : " + e.getMessage());
         }
 
         return null;
     }
 
-    // ---------------------------
-    // UPDATE
-    // ---------------------------
-    public boolean update(User user) {
 
-        String sql = "UPDATE users SET username = ?, email = ?, role = ?, niveau = ?, livres_lus = ? " +
-                "WHERE id = ?";
+
+
+    // --------------------------- //
+    // UPDATE
+    // --------------------------- //
+    public boolean update(User user) {
+        String sql = "UPDATE users SET username = ?, email = ?, role = ?, niveau = ?, livres_lus = ? WHERE id = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -135,11 +133,11 @@ public class UserDAO {
         }
     }
 
-    // ---------------------------
-    // DELETE
-    // ---------------------------
-    public boolean delete(int id) {
 
+    // --------------------------- //
+    // DELETE
+    // --------------------------- //
+    public boolean delete(int id) {
         String sql = "DELETE FROM users WHERE id = ?";
 
         try (Connection conn = Database.getConnection();
@@ -154,11 +152,11 @@ public class UserDAO {
         }
     }
 
-    // ---------------------------
-    // METHODE UTILITAIRE
-    // ---------------------------
-    private User extractUser(ResultSet rs) throws SQLException {
 
+    // --------------------------- //
+    // METHODE UTILITAIRE
+    // --------------------------- //
+    private User extractUser(ResultSet rs) throws SQLException {
         return new User(
                 rs.getInt("id"),
                 rs.getString("username"),
@@ -170,4 +168,5 @@ public class UserDAO {
         );
     }
 }
+
 

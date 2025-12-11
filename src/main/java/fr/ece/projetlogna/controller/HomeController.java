@@ -5,41 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.util.HashMap;
 
 public class HomeController {
 
-    @FXML
-    private TextField searchField;
+    @FXML private Button catalogueButton;
 
-    @FXML
-    private Button accountButton;
-
-    @FXML
-    private Button catalogueButton;
-
-    @FXML
-    private Button categoriesButton;
-
-    @FXML
-    private Button forumButton;
-
-    @FXML
-    private Button avisButton;
-
-    @FXML
-    private Button utilisateursButton;
-
-    @FXML
-    private Button voirCatalogueButton;
-
-    @FXML
-    private Button parcourirCategorieButton;
+    // Cache des pages déjà chargées
+    private final HashMap<String, Parent> pageCache = new HashMap<>();
 
     @FXML
     public void initialize() {
-        // Initialisation si nécessaire
+        // Rien de spécial ici, c’est OK
     }
 
     @FXML
@@ -57,20 +35,26 @@ public class HomeController {
         loadPage("/Views/forum.fxml");
     }
 
-
     private void loadPage(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
+            Parent root;
+
+            // Vérifie si déjà en cache
+            if (pageCache.containsKey(fxmlPath)) {
+                root = pageCache.get(fxmlPath);
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                root = loader.load();
+                pageCache.put(fxmlPath, root); // mise en cache
+            }
 
             Stage stage = (Stage) catalogueButton.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Erreur lors du chargement de la page : " + fxmlPath);
+            System.err.println("Erreur lors du chargement : " + fxmlPath);
         }
     }
 }

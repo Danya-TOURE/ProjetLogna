@@ -11,6 +11,7 @@ module fr.ece.projetlogna {
 
     // Le driver MySQL 8 (nom EXACT du module)
     requires mysql.connector.j;
+    requires java.desktop;
 
     // ======= PACKAGES ACCESSIBLES À JAVAFX =======
 

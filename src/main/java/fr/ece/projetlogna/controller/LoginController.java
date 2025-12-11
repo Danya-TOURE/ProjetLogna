@@ -1,5 +1,6 @@
 package fr.ece.projetlogna.controller;
 
+import fr.ece.projetlogna.dao.UserDAO;
 import fr.ece.projetlogna.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,87 +11,85 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginController {
 
-    @FXML
-    private TextField usernameField;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Label errorLabel;
+    @FXML private Button loginButton;
 
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Label errorLabel;
-
-    @FXML
-    public void initialize() {
-        errorLabel.setText("");
-    }
+    private final UserDAO userDAO = new UserDAO();
 
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Validation simple
+        // Réinitialise le style
+        errorLabel.setStyle("");
+        errorLabel.setText("");
+
+        // Champs vides
         if (username.isEmpty() || password.isEmpty()) {
-            errorLabel.setText("Veuillez remplir tous les champs");
+            setError("Veuillez remplir tous les champs.");
             return;
         }
 
-        // Ici vous ajouterez la logique de vérification avec votre base de données
-        // Pour l'instant, un exemple simple :
-        if (authenticateUser(username, password)) {
-            errorLabel.setText("");
-            System.out.println("Connexion réussie pour : " + username);
-            // Rediriger vers la page principale
-            // loadMainPage();
-        } else {
-            errorLabel.setText("Nom d'utilisateur ou mot de passe incorrect");
+        User user = userDAO.findByUsername(username);
+
+        if (user == null) {
+            setError("Nom d'utilisateur incorrect.");
+            return;
         }
+
+        if (!BCrypt.checkpw(password, user.getPasswordHash())) {
+            setError("Mot de passe incorrect.");
+            return;
+        }
+
+        // Succès
+        setSuccess("Connexion réussie !");
+        loadHomePage();
     }
 
-    private boolean authenticateUser(String username, String password) {
-        // TODO: Remplacer par votre logique de connexion à la base de données
-        // Exemple temporaire :
-        return username.equals("admin") && password.equals("admin");
+    private void setError(String msg) {
+        errorLabel.setText(msg);
+        errorLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+    }
+
+    private void setSuccess(String msg) {
+        errorLabel.setText(msg);
+        errorLabel.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
     }
 
     @FXML
     private void goToRegister() {
         try {
-            // Charger le fichier FXML de register
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/register.fxml"));
             Parent root = loader.load();
-
-            // Obtenir la scène actuelle
             Stage stage = (Stage) loginButton.getScene().getWindow();
-
-            // Créer et afficher la nouvelle scène
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
-            errorLabel.setText("Erreur lors du chargement de la page");
+            setError("Erreur lors du chargement de la page d'inscription.");
         }
     }
 
-    private void loadMainPage() {
-        // TODO: Charger la page principale après connexion réussie
-        // try {
-        //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        //     Parent root = loader.load();
-        //     Stage stage = (Stage) loginButton.getScene().getWindow();
-        //     Scene scene = new Scene(root);
-        //     stage.setScene(scene);
-        //     stage.show();
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
+    private void loadHomePage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/home.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            setError("Erreur lors du chargement de la page d'accueil.");
+        }
     }
 }
+
+
