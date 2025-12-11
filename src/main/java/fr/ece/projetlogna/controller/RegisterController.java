@@ -24,8 +24,8 @@ public class RegisterController {
 
     @FXML
     public void initialize() {
-        niveauComboBox.getItems().addAll("Débutant", "Intermédiaire", "Avancé", "Expert");
         errorLabel.setText("");
+        errorLabel.setStyle("-fx-text-fill: red;");
     }
 
     @FXML
@@ -35,7 +35,6 @@ public class RegisterController {
         String email = emailField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
-        String niveau = niveauComboBox.getValue();
 
         // -------------------
         // VALIDATIONS
@@ -44,10 +43,8 @@ public class RegisterController {
             errorLabel.setText("Veuillez remplir tous les champs");
             return;
         }
-        if (niveau == null) {
-            errorLabel.setText("Veuillez sélectionner un niveau");
-            return;
-        }
+
+
         if (!password.equals(confirmPassword)) {
             errorLabel.setText("Les mots de passe ne correspondent pas");
             return;
@@ -73,7 +70,7 @@ public class RegisterController {
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPasswordHash(hashedPassword);
-        newUser.setNiveau(niveau);
+        newUser.setNiveau("Débutant");
         newUser.setRole("user");
         newUser.setLivresLus(0);
 
