@@ -16,7 +16,7 @@ public class RegisterController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
-    @FXML private ComboBox<String> niveauComboBox;
+
     @FXML private Hyperlink loginLink;
     @FXML private Label errorLabel;
 

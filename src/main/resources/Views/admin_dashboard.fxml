@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="fr.ece.projetlogna.controller.AdminController"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #8B2929;">
 
-</AnchorPane>
+    <!-- MENU LATERAL GAUCHE -->
+    <left>
+        <VBox spacing="15" prefWidth="200"
+              style="-fx-background-color: #3B1414;">
+            <padding>
+                <Insets top="25" right="15" bottom="25" left="15"/>
+            </padding>
+
+            <Label text="Lôgna - Admin"
+                   textFill="white"
+                   style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+            <Separator/>
+
+            <!-- Utilisateurs -->
+            <Button fx:id="usersButton" text="Gérer les utilisateurs"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;"
+                    prefWidth="170"/>
+
+            <!-- Gérer les livres -->
+            <Button fx:id="booksButton" text="Gérer les livres"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;"
+                    prefWidth="170"/>
+
+
+
+            <Button fx:id="settingsButton" text="Paramètres"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;"
+                    prefWidth="170"/>
+
+            <Pane VBox.vgrow="ALWAYS"/>
+
+            <!-- Déconnexion -->
+            <Button fx:id="logoutButton" text="Se déconnecter"
+                    style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-weight: bold;"
+                    prefWidth="170"/>
+        </VBox>
+    </left>
+
+    <!-- CONTENU PRINCIPAL -->
+    <center>
+        <VBox spacing="15"
+              style="-fx-background-color: #FAF0E6; -fx-background-radius: 20;"
+              maxWidth="650">
+            <padding>
+                <Insets top="20" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <!-- Titre -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Gestion des utilisateurs"
+                       textFill="#3B1414"
+                       style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Bouton Ajouter -->
+            <HBox spacing="10">
+                <Button fx:id="addUserButton" text="Ajouter un utilisateur"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <!-- Tableau -->
+            <TableView fx:id="usersTable" prefHeight="400">
+
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="colUsername" text="Nom d'utilisateur" prefWidth="150"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                    <TableColumn fx:id="colLevel" text="Niveau" prefWidth="100"/>
+                    <TableColumn fx:id="colBooksRead" text="Livres lus" prefWidth="100"/>
+                </columns>
+
+            </TableView>
+
+            <Label fx:id="infoLabel"
+                   textFill="red"
+                   style="-fx-font-size: 12;"
+                   wrapText="true"/>
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -33,31 +33,64 @@ public class CompteController {
 
     @FXML
     public void initialize() {
-        // Les valeurs par défaut sont déjà dans le FXML
-        // Si vous avez un utilisateur connecté, mettez à jour ici
-        // loadUserInfo();
+        loadUserInfo();
     }
 
-    private void loadUserInfo() {
-        // TODO: Récupérer l'utilisateur connecté depuis votre système d'authentification
-        // Exemple :
-        // User currentUser = SessionManager.getCurrentUser();
-        // usernameLabel.setText(currentUser.getUsername());
-        // emailLabel.setText(currentUser.getEmail());
-        // niveauLabel.setText(currentUser.getNiveau());
-        // livresLusLabel.setText(currentUser.getLivresLus() + " livres");
+
+    /**
+     * Méthode qui calcule automatiquement le niveau selon le nombre de livres lus.
+     */
+    private String calculerNiveau(int livresLus) {
+
+        if (livresLus >= 25) {
+            return "Expert ++++";
+        } else if (livresLus >= 20) {
+            return "Expert";
+        } else if (livresLus >= 13) {
+            return "Excellent";
+        } else if (livresLus >= 6) {
+            return "Moyen";
+        } else if (livresLus >= 1) {
+            return "Débutant";
+        } else {
+            return "Aucun niveau";
+        }
     }
+
+
+    /**
+     * Charge les informations de l'utilisateur dans les labels
+     */
+    private void loadUserInfo() {
+
+        // TODO : remplacer par ton système pour récupérer l’utilisateur connecté
+        // User currentUser = SessionManager.getCurrentUser();
+
+        // 🔽 Exemple temporaire pour test (à remplacer)
+        String username = "utilisateur_demo";
+        String email = "demo@exemple.com";
+        int livresLus = 12; // Mets ici le vrai nombre venant de ta base
+
+        // Calcul du niveau automatiquement
+        String niveau = calculerNiveau(livresLus);
+
+        // Mise à jour de l’affichage
+        usernameLabel.setText(username);
+        emailLabel.setText(email);
+
+        livresLusLabel.setText(livresLus + (livresLus > 1 ? " livres" : " livre"));
+        niveauLabel.setText(niveau);
+    }
+
 
     @FXML
     private void editProfile() {
         System.out.println("Modification du profil");
-        // TODO: Ouvrir une fenêtre ou page pour modifier le profil
     }
 
     @FXML
     private void logout() {
         System.out.println("Déconnexion de l'utilisateur");
-        // TODO: Nettoyer la session utilisateur
         loadPage("/Views/login.fxml");
     }
 
@@ -65,7 +98,6 @@ public class CompteController {
     private void goToHome() {
         loadPage("/Views/home.fxml");
     }
-
 
     @FXML
     private void goToCategories() {
