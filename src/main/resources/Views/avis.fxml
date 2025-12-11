@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="fr.ece.projetlogna.controller.AvisController"
+            prefWidth="850" prefHeight="550"
+            style="-fx-background-color: #8B2929;">
 
-</AnchorPane>
+    <!-- CONTENU PRINCIPAL -->
+    <center>
+        <VBox spacing="15"
+              style="-fx-background-color: #FAF0E6; -fx-padding: 20; -fx-background-radius: 15;"
+              maxWidth="700">
+
+            <!-- Titre -->
+            <Label text="Avis des utilisateurs"
+                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #3B1414;"/>
+
+            <!-- Zone de texte pour écrire un avis -->
+            <TextArea fx:id="avisField"
+                      promptText="Écrire un avis..."
+                      prefRowCount="3"
+                      style="-fx-background-radius: 10; -fx-padding: 10;"/>
+
+            <!-- Boutons -->
+            <HBox spacing="10">
+                <Button fx:id="addAvisButton" text="Publier"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-padding: 8 20; -fx-font-weight: bold;"/>
+
+                <Button fx:id="deleteAvisButton" text="Supprimer sélection"
+                        style="-fx-background-color: #3B1414; -fx-text-fill: white; -fx-padding: 8 20;"/>
+            </HBox>
+
+            <!-- Tableau des avis -->
+            <TableView fx:id="avisTable" prefHeight="350">
+                <columns>
+                    <TableColumn fx:id="colUser" text="Utilisateur" prefWidth="150"/>
+                    <TableColumn fx:id="colAvis" text="Avis" prefWidth="450"/>
+                </columns>
+            </TableView>
+
+            <!-- Label d’information -->
+            <Label fx:id="infoLabel"
+                   style="-fx-text-fill: red; -fx-font-size: 12;"
+                   wrapText="true"/>
+        </VBox>
+    </center>
+
+</BorderPane>

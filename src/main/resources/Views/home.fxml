@@ -17,12 +17,9 @@
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <TextField fx:id="searchField" prefHeight="40" prefWidth="400" promptText="Rechercher un livre..." style="-fx-background-color: #FAF0E6; -fx-background-radius: 20; -fx-padding: 10;">
-            </TextField>
-
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="accountButton" onAction="#goToAccount" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16; -fx-cursor: hand;" text="Mon compte">
+            <Button fx:id="accountButton" onAction="#goToAccount" style="-fx-background-color: transparent; -fx-text-fill: white;                            -fx-font-size: 16; -fx-cursor: hand;" text="Mon compte">
                 <graphic>
                     <Label style="-fx-font-size: 20;" text="👤" />
                 </graphic>
@@ -35,41 +32,67 @@
 
     <!-- Menu latéral gauche -->
     <left>
-        <VBox prefHeight="629.0" prefWidth="146.0" spacing="0" style="-fx-background-color: #8B2929;">
+        <VBox prefHeight="629.0" prefWidth="170.0" spacing="0" style="-fx-background-color: #8B2929;">
             <padding>
                 <Insets bottom="30" top="30" />
             </padding>
 
-            <Button fx:id="categoriesButton" onAction="#goToCategories" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;" text="Catégories">
-            </Button>
+            <!-- Accueil (juste visuel, pas de fx:id ni d'action obligatoire) -->
+            <Label maxWidth="Infinity" style="-fx-background-color: #A03838; -fx-text-fill: white;                           -fx-font-size: 18; -fx-alignment: CENTER_LEFT;                           -fx-padding: 15 30; -fx-font-weight: bold;" text="Accueil" />
 
-            <Button fx:id="forumButton" onAction="#goToForum" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;" text="Forum">
-            </Button>
+            <Button fx:id="categoriesButton" onAction="#goToCategories" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent; -fx-text-fill: white;                            -fx-font-size: 18; -fx-alignment: CENTER_LEFT;                            -fx-padding: 15 30; -fx-cursor: hand;" text="Catégories" />
+
+            <Button fx:id="forumButton" onAction="#goToForum" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent; -fx-text-fill: white;                            -fx-font-size: 18; -fx-alignment: CENTER_LEFT;                            -fx-padding: 15 30; -fx-cursor: hand;" text="Forum" />
         </VBox>
     </left>
 
     <!-- Contenu central -->
     <center>
-        <VBox alignment="CENTER" spacing="40" style="-fx-background-color: #FAF0E6;">
+        <VBox alignment="TOP_CENTER" spacing="40" style="-fx-background-color: #FAF0E6;">
             <padding>
-                <Insets bottom="80" top="80" />
+                <Insets bottom="60" left="60" right="60" top="60" />
             </padding>
 
-            <Label style="-fx-font-size: 64; -fx-font-weight: bold; -fx-font-family: 'Serif';" text="Accueil" textFill="#3B1414">
-            </Label>
+            <!-- HERO -->
+            <VBox alignment="CENTER" maxWidth="700" spacing="15">
+                <Label style="-fx-font-size: 42; -fx-font-weight: bold; -fx-font-family: 'Serif';" text="Bienvenue sur Lôgna" textFill="#3B1414" />
 
-            <VBox alignment="CENTER" spacing="15">
-                <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Chinua Achebe : « Les livres sont une" textFill="#3B1414">
-                </Label>
-                <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="fenêtre sur le monde. »" textFill="#3B1414">
-                </Label>
+                <Label style="-fx-font-size: 16; -fx-text-alignment: center;" text="Ta bibliothèque numérique pour découvrir, lire et partager des livres africains et du monde." textFill="#3B1414" wrapText="true" />
+
+                <Label style="-fx-font-size: 14; -fx-font-style: italic; -fx-text-alignment: center;" text="« Les livres sont une fenêtre sur le monde. » — Chinua Achebe" textFill="#6A4C4C" wrapText="true" />
+
+                <!-- Boutons principaux -->
+                <HBox alignment="CENTER" spacing="20">
+                    <Button fx:id="parcourirCategorieButton" onAction="#goToCategories" prefHeight="50" prefWidth="250" style="-fx-background-color: #8B2929; -fx-text-fill: white;                                    -fx-font-size: 16; -fx-font-weight: bold;                                    -fx-background-radius: 10; -fx-cursor: hand;" text="Parcourir par catégorie" />
+
+                    <Button onAction="#goToForum" prefHeight="50" prefWidth="220" style="-fx-background-color: transparent; -fx-border-color: #8B2929;                                    -fx-border-radius: 10; -fx-text-fill: #8B2929;                                    -fx-font-size: 14; -fx-font-weight: bold;                                    -fx-cursor: hand;" text="Rejoindre le forum" />
+                </HBox>
             </VBox>
 
-            <HBox alignment="CENTER" spacing="30">
+            <!-- Cartes de fonctionnalités -->
+            <HBox alignment="CENTER" spacing="25">
+                <!-- Carte 1 -->
+                <VBox prefWidth="230" spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Découvre des livres" textFill="#3B1414" />
+                    <Label style="-fx-font-size: 12;" text="Parcours des catégories variées : littérature africaine, romans, développement personnel, et plus." textFill="#666666" wrapText="true" />
+                    <Button onAction="#goToCategories" style="-fx-background-color: #8B2929; -fx-text-fill: white;                                    -fx-font-size: 12; -fx-background-radius: 8;                                    -fx-cursor: hand;" text="Explorer" />
+                </VBox>
 
-                <Button fx:id="parcourirCategorieButton" onAction="#goToCategories" prefHeight="50" prefWidth="250" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Parcourir par catégorie">
-                </Button>
+                <!-- Carte 2 -->
+                <VBox prefWidth="230" spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Partage ton avis" textFill="#3B1414" />
+                    <Label style="-fx-font-size: 12;" text="Discute avec d'autres lecteurs dans le forum et donne ton avis sur les livres que tu lis." textFill="#666666" wrapText="true" />
+                    <Button onAction="#goToForum" style="-fx-background-color: transparent; -fx-border-color: #8B2929;                                    -fx-border-radius: 8; -fx-text-fill: #8B2929;                                    -fx-font-size: 12; -fx-cursor: hand;" text="Accéder au forum" />
+                </VBox>
+
+                <!-- Carte 3 -->
+                <VBox prefWidth="230" spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Suis ta progression" textFill="#3B1414" />
+                    <Label style="-fx-font-size: 12;" text="Ton niveau de lecture évolue selon le nombre de livres lus : débutant, moyen, excellent, expert..." textFill="#666666" wrapText="true" />
+                    <Button onAction="#goToAccount" style="-fx-background-color: #8B2929; -fx-text-fill: white;                                    -fx-font-size: 12; -fx-background-radius: 8;                                    -fx-cursor: hand;" text="Voir mon compte" />
+                </VBox>
             </HBox>
+
         </VBox>
     </center>
 

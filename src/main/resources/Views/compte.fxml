@@ -69,7 +69,7 @@
 
                 <VBox spacing="10">
                     <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #3B1414;" text="Niveau de lecture :" />
-                    <Label fx:id="niveauLabel" style="-fx-font-size: 16; -fx-text-fill: #666;" text="Intermédiaire" />
+                    <Label fx:id="niveauLabel" style="-fx-font-size: 16; -fx-text-fill: #666;" text="Intermediare" />
                 </VBox>
 
                 <VBox spacing="10">

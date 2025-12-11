@@ -42,10 +42,7 @@
                            style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
             </PasswordField>
 
-            <ComboBox fx:id="niveauComboBox" promptText="Niveau de lecture"
-                      style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5;"
-                      prefWidth="220.0">
-            </ComboBox>
+
         </VBox>
 
         <Button fx:id="registerButton" text="S'inscrire" onAction="#handleRegister"
