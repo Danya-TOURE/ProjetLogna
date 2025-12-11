@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.correction.controller.MesLivresController">
+
+
+    <Label layoutX="330" layoutY="20" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2B3A67;" text="Mes Livres" />
+
+
+    <TableView fx:id="tableMesLivres" layoutX="80" layoutY="80" prefHeight="450" prefWidth="650">
+        <columns>
+            <TableColumn fx:id="colTitre" prefWidth="250" text="Titre" />
+            <TableColumn fx:id="colAuteur" prefWidth="200" text="Auteur" />
+            <TableColumn fx:id="colProgression" prefWidth="200" text="Catégories" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

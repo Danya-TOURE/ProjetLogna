@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.ece.projetlogna.controller.RegisterController"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: #8B2929;">
+
+    <VBox alignment="CENTER" layoutX="250.0" layoutY="80.0" prefWidth="300.0" spacing="15.0"
+          style="-fx-background-color: #FAF0E6; -fx-background-radius: 15;">
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+        <Label text="Lôgna" textFill="#3B1414"
+               style="-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: 'Serif';">
+        </Label>
+
+        <Label text="Inscription" textFill="#3B1414"
+               style="-fx-font-size: 24; -fx-font-weight: bold;">
+        </Label>
+
+        <VBox spacing="10">
+            <TextField fx:id="usernameField" promptText="Nom d'utilisateur"
+                       style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            </TextField>
+
+            <TextField fx:id="emailField" promptText="Email"
+                       style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            </TextField>
+
+            <PasswordField fx:id="passwordField" promptText="Mot de passe"
+                           style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            </PasswordField>
+
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirmer mot de passe"
+                           style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            </PasswordField>
+
+            <ComboBox fx:id="niveauComboBox" promptText="Niveau de lecture"
+                      style="-fx-background-color: white; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5;"
+                      prefWidth="220.0">
+            </ComboBox>
+        </VBox>
+
+        <Button fx:id="registerButton" text="S'inscrire" onAction="#handleRegister"
+                prefWidth="220.0" prefHeight="40.0"
+                style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;">
+        </Button>
+
+        <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 12;" wrapText="true" alignment="CENTER"/>
+
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Déjà un compte ?" textFill="#3B1414" style="-fx-font-size: 14;"/>
+            <Hyperlink fx:id="loginLink" text="Se connecter" onAction="#goToLogin"
+                       style="-fx-text-fill: #8B2929; -fx-font-size: 14; -fx-underline: true;">
+            </Hyperlink>
+        </VBox>
+
+    </VBox>
+
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.ece.correction.controller.ForumController"
+            prefWidth="600" prefHeight="400"
+            style="-fx-background-color: #e8c39e;">
+
+
+    <Label layoutX="250" layoutY="20" text="Forum" style="-fx-font-size:24px;"/>
+
+
+    <ListView fx:id="listPosts" layoutX="50" layoutY="60" prefWidth="500" prefHeight="250"/>
+
+
+    <TextArea fx:id="txtMessage" layoutX="50" layoutY="320" prefWidth="400" prefHeight="60"/>
+
+
+    <Button fx:id="btnPost" layoutX="470" layoutY="340" text="Poster" onAction="#handlePost"/>
+
+</AnchorPane>
