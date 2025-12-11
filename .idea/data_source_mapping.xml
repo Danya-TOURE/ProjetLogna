@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22112e29-ebff-4272-9e5f-a8c897455576/console.sql" value="22112e29-ebff-4272-9e5f-a8c897455576" />
     <file url="file://$PROJECT_DIR$/src/main/java/fr/ece/projetlogna/database/lognadb.sql" value="75a653ef-dd03-47d8-9466-fff8118f36cc" />
   </component>
 </project>

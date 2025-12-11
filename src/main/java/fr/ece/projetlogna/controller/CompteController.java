@@ -101,7 +101,7 @@ public class CompteController {
 
     @FXML
     private void goToCategories() {
-        loadPage("/Views/categories.fxml");
+        loadPage("/Views/categorie.fxml");
     }
 
     @FXML
