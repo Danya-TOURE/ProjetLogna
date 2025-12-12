@@ -1,20 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" prefWidth="800" style="-fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.correction.controller.MesLivresController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.ece.projetlogna.controller.LivreController">
 
+    <!-- ========== EN-TÊTE ========== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: #8B2929; -fx-padding: 15;">
 
-    <Label layoutX="330" layoutY="20" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2B3A67;" text="Mes Livres" />
+            <!-- Logo Lôgna -->
+            <Label style="-fx-font-size: 36; -fx-font-weight: bold; -fx-font-family: 'Serif';"
+                   text="Lôgna"
+                   textFill="white">
+                <HBox.margin>
+                    <Insets left="30" />
+                </HBox.margin>
+            </Label>
 
+            <!-- Espace flexible -->
+            <Region HBox.hgrow="ALWAYS" />
 
-    <TableView fx:id="tableMesLivres" layoutX="80" layoutY="80" prefHeight="450" prefWidth="650">
-        <columns>
-            <TableColumn fx:id="colTitre" prefWidth="250" text="Titre" />
-            <TableColumn fx:id="colAuteur" prefWidth="200" text="Auteur" />
-            <TableColumn fx:id="colProgression" prefWidth="200" text="Catégories" />
-        </columns>
-    </TableView>
+            <!-- Bouton Mon Compte -->
+            <Button onAction="#goToCompte"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 16;
+                           -fx-cursor: hand;"
+                    text="Mon compte">
+                <graphic>
+                    <Label style="-fx-font-size: 20;" text="👤" />
+                </graphic>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </top>
 
-</AnchorPane>
+    <!-- ========== MENU LATÉRAL GAUCHE ========== -->
+    <left>
+        <VBox prefWidth="200" spacing="0"
+              style="-fx-background-color: #8B2929;">
+            <padding>
+                <Insets bottom="30" top="30" />
+            </padding>
+
+            <!-- Bouton Accueil -->
+            <Button onAction="#goToHome"
+                    prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 18;
+                           -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30;
+                           -fx-cursor: hand;"
+                    text="Accueil" />
+
+            <!-- Bouton Catégories -->
+            <Button onAction="#goToCategories"
+                    prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 18;
+                           -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30;
+                           -fx-cursor: hand;"
+                    text="Catégories" />
+
+            <!-- Bouton Forum -->
+            <Button onAction="#goToForum"
+                    prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 18;
+                           -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30;
+                           -fx-cursor: hand;"
+                    text="Forum" />
+        </VBox>
+    </left>
+
+    <!-- ========== CONTENU CENTRAL (LISTE DES LIVRES) ========== -->
+    <center>
+        <ScrollPane fx:id="scrollPane"
+                    fitToWidth="true"
+                    style="-fx-background: #FAF0E6;
+                           -fx-background-color: #FAF0E6;">
+
+            <VBox spacing="30"
+                  style="-fx-background-color: #FAF0E6;">
+                <padding>
+                    <Insets bottom="50" left="80" right="80" top="50" />
+                </padding>
+
+                <!-- ========== BOUTON RETOUR ========== -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Button onAction="#goToCategories"
+                            style="-fx-background-color: transparent;
+                                   -fx-text-fill: #8B2929;
+                                   -fx-font-size: 16;
+                                   -fx-cursor: hand;
+                                   -fx-underline: true;"
+                            text="← Retour aux catégories" />
+                </HBox>
+
+                <!-- ========== TITRE DE LA CATÉGORIE ========== -->
+                <Label fx:id="categorieLabel"
+                       style="-fx-font-size: 42;
+                              -fx-font-weight: bold;
+                              -fx-font-family: 'Serif';"
+                       text="Catégorie"
+                       textFill="#3B1414" />
+
+                <!-- ========== CONTENEUR DES LIVRES ========== -->
+                <!-- Les cartes de livres seront ajoutées dynamiquement ici par le contrôleur -->
+                <VBox fx:id="livresContainer" spacing="20">
+                    <!-- Ce VBox sera rempli dynamiquement par creerCarteLivre() -->
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

@@ -4,13 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.projetlogna.controller.CategorieController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.ece.projetlogna.controller.CategorieController">
 
     <!-- En-tête -->
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #8B2929; -fx-padding: 15;">
 
-            <Label style="-fx-font-size: 36; -fx-font-weight: bold; -fx-font-family: 'Serif';" text="Lôgna" textFill="white">
+            <Label style="-fx-font-size: 36; -fx-font-weight: bold; -fx-font-family: 'Serif';"
+                   text="Lôgna" textFill="white">
                 <HBox.margin>
                     <Insets left="30" />
                 </HBox.margin>
@@ -18,8 +22,10 @@
 
             <Region HBox.hgrow="ALWAYS" />
 
-
-            <Button fx:id="accountButton" onAction="#goToCompte" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16; -fx-cursor: hand;" text="Mon compte">
+            <Button fx:id="accountButton" onAction="#goToCompte"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;
+                           -fx-font-size: 16; -fx-cursor: hand;"
+                    text="Mon compte">
                 <graphic>
                     <Label style="-fx-font-size: 20;" text="👤" />
                 </graphic>
@@ -37,9 +43,28 @@
                 <Insets bottom="30" top="30" />
             </padding>
 
-            <Button prefHeight="50" prefWidth="200" style="-fx-background-color: #A03838; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-font-weight: bold;" text="Catégories" />
+            <!-- Bouton Accueil -->
+            <Button onAction="#goToHome"
+                    prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;
+                           -fx-font-size: 18; -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30; -fx-cursor: hand;"
+                    text="Accueil" />
 
-            <Button onAction="#goToForum" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-alignment: CENTER_LEFT; -fx-padding: 15 30; -fx-cursor: hand;" text="Forum" />
+            <!-- Bouton Catégories (actif) -->
+            <Button prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: #A03838; -fx-text-fill: white;
+                           -fx-font-size: 18; -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30; -fx-font-weight: bold;"
+                    text="Catégories" />
+
+            <!-- Bouton Forum -->
+            <Button onAction="#goToForum"
+                    prefHeight="50" prefWidth="200"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;
+                           -fx-font-size: 18; -fx-alignment: CENTER_LEFT;
+                           -fx-padding: 15 30; -fx-cursor: hand;"
+                    text="Forum" />
         </VBox>
     </left>
 
@@ -50,19 +75,52 @@
                 <Insets bottom="50" left="80" right="80" top="50" />
             </padding>
 
-            <Label style="-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: 'Serif';" text="Catégories" textFill="#3B1414" />
+            <!-- Titre de la page -->
+            <Label style="-fx-font-size: 48; -fx-font-weight: bold; -fx-font-family: 'Serif';"
+                   text="Catégories" textFill="#3B1414" />
 
+            <!-- Liste des catégories -->
             <VBox spacing="25">
 
-                <Button fx:id="litteratureAfricaineBtn" onAction="#showLitteratureAfricaine" prefHeight="70" prefWidth="500" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Littérature africaine" />
+                <Button fx:id="litteratureAfricaineBtn"
+                        onAction="#showLitteratureAfricaine"
+                        prefHeight="70" prefWidth="500"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white;
+                               -fx-font-size: 20; -fx-font-weight: bold;
+                               -fx-background-radius: 10; -fx-cursor: hand;"
+                        text="Littérature africaine" />
 
-                <Button fx:id="romanBtn" onAction="#showRoman" prefHeight="70" prefWidth="500" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Roman" />
+                <Button fx:id="romanBtn"
+                        onAction="#showRoman"
+                        prefHeight="70" prefWidth="500"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white;
+                               -fx-font-size: 20; -fx-font-weight: bold;
+                               -fx-background-radius: 10; -fx-cursor: hand;"
+                        text="Roman" />
 
-                <Button fx:id="developpementBtn" onAction="#showDeveloppement" prefHeight="70" prefWidth="500" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Développement personnel" />
+                <Button fx:id="developpementBtn"
+                        onAction="#showDeveloppement"
+                        prefHeight="70" prefWidth="500"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white;
+                               -fx-font-size: 20; -fx-font-weight: bold;
+                               -fx-background-radius: 10; -fx-cursor: hand;"
+                        text="Développement personnel" />
 
-                <Button fx:id="fantastiqueBtn" onAction="#showFantastique" prefHeight="70" prefWidth="500" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Fantastique et science fiction" />
+                <Button fx:id="fantastiqueBtn"
+                        onAction="#showFantastique"
+                        prefHeight="70" prefWidth="500"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white;
+                               -fx-font-size: 20; -fx-font-weight: bold;
+                               -fx-background-radius: 10; -fx-cursor: hand;"
+                        text="Fantastique et science fiction" />
 
-                <Button fx:id="philosophieBtn" onAction="#showPhilosophie" prefHeight="70" prefWidth="500" style="-fx-background-color: #8B2929; -fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Philosophie" />
+                <Button fx:id="philosophieBtn"
+                        onAction="#showPhilosophie"
+                        prefHeight="70" prefWidth="500"
+                        style="-fx-background-color: #8B2929; -fx-text-fill: white;
+                               -fx-font-size: 20; -fx-font-weight: bold;
+                               -fx-background-radius: 10; -fx-cursor: hand;"
+                        text="Philosophie" />
 
             </VBox>
         </VBox>
