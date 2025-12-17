@@ -1,6 +1,6 @@
 package fr.ece.projetlogna.controller;
 
-import fr.ece.projetlogna.database.DatabaseConnection;
+import fr.ece.projetlogna.database.Database;
 import fr.ece.projetlogna.model.Livre;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,7 +83,7 @@ public class LivreController {
 
         String query = "SELECT id, titre, auteur, description, categorie FROM books WHERE categorie = ? ORDER BY titre";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, categorie);
